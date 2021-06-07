@@ -57,13 +57,13 @@ class ListCadete
     //$conn->query("SET CHARACTER SET 'utf8'");
     if ($tipo != "" && $busqueda != "") {
       if ($tipo == "genero") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE genero LIKE '%$busqueda%' ";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE genero LIKE '%$busqueda%' LIMIT 20";
       }elseif ($tipo == "edad") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE edad_registro like '%$busqueda%'";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE edad_registro like '%$busqueda%' LIMIT 20";
       }elseif ($tipo == "folio") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE folio like '%$busqueda%'";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE folio like '%$busqueda%' LIMIT 20";
       }elseif ($tipo == "reingreso") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE tipo_ingreso like '%$busqueda%'";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE tipo_ingreso like '%$busqueda%' LIMIT 20";
       }elseif ($tipo == "nombre") {
         $piezas = explode(" ", $busqueda);
         if(sizeof($piezas) == 1){

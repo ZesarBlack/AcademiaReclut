@@ -88,7 +88,12 @@ function datos_aspirante(id) {
     document.getElementById("numerotel").value = respuesta.tel_celular;
     if (respuesta.genero == "Femenino" || respuesta.genero == "FEMENINO") {
       //alert(respuesta.genero);
+      console.log(respuesta.genero);
       tipoExamen(respuesta.genero);
+      genecobstetricos(respuesta.genero);
+    }else {
+      tipoExamen(respuesta.genero);
+      genecobstetricos("Maculino");
     }
     edad = respuesta.edad_registro;
     //alert(edad);
@@ -123,8 +128,8 @@ peso=document.getElementById("peso").value;
 estatura=document.getElementById("estatura").value;
 
 if (estatura !="" && peso != "") {
+  //console.log("ok");
   imc(peso, estatura);
-
 }
 
 $(document).on('keyup','#peso', function(event){
@@ -139,46 +144,77 @@ $(document).on('keyup','#estatura', function(event){
   imc(peso, estatura);
 });
 
-
-
 function imc(peso, estatura){
   var imc2 = peso/(estatura*estatura);
   var imc = Math.round(imc2);
-
-
-  //edad = document.getElementById('edad').value;
-  //genero = document.getElementById("sexo").value;
-  //document.getElementById('imc').value=imc;
-
-    if(imc2 < 16) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "desnutrición severa";
-    }else if (imc2 >= 16.1 && imc2 <= 18.4) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "desnutrición moderada";
-    }else if (imc2 >= 18.5 && imc2 <= 22) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "bajo peso";
-    }else if (imc2 >= 22 && imc2 <= 24.8) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "peso normal";
-    }else if (imc2 >= 24.9 && imc2 <= 29.9) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "sobrepeso";
-    }else if (imc2 >= 30 && imc2 <= 34.9) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "Obesidad tipo 1";
-    }else if (imc2 >= 35 && imc2 <= 39.9) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "Obesidad tipo 2";
-    }else if (imc2 >=  40) {
-      console.log(imc2);
-      document.getElementById('nivel').value = "Obesidad tipo 3";
-    }
+  console.log(imc);
+  if (imc=="Infinity") {
+    document.getElementById('imc').value="";
+  }else {
+    console.log(imc);
+    document.getElementById('imc').value=imc;
+    setTimeout(function(){ nivelPeso()}, 500);
+  }
+  if(imc2 < 16) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "desnutrición severa";
+  }else if (imc2 >= 16.1 && imc2 <= 18.4) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "desnutrición moderada";
+  }else if (imc2 >= 18.5 && imc2 <= 22) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "bajo peso";
+  }else if (imc2 >= 22 && imc2 <= 24.8) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "peso normal";
+  }else if (imc2 >= 24.9 && imc2 <= 29.9) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "sobrepeso";
+  }else if (imc2 >= 30 && imc2 <= 34.9) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "Obesidad tipo 1";
+  }else if (imc2 >= 35 && imc2 <= 39.9) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "Obesidad tipo 2";
+  }else if (imc2 >=  40) {
+    console.log(imc2);
+    document.getElementById('nivel').value = "Obesidad tipo 3";
+  }
+      //document.getElementById('imc').value=imc;
 }
 
-function nivelPeso(masa) {
 
+function nivelPeso() {
+  peso=document.getElementById("peso").value;
+  estatura=document.getElementById("estatura").value;
+  var masa = peso/(estatura*estatura);
+  console.log("funcion");
+  if(masa < 16) {
+    console.log("okokkoko");
+    console.log(masa);
+    document.getElementById('nivel').value = "desnutrición severa";
+  }else if (masa >= 16.1 && masa <= 18.4) {
+    console.log(masa);
+    document.getElementById('nivel').value = "desnutrición moderada";
+  }else if (masa >= 18.5 && masa <= 22) {
+    console.log(masa);
+    document.getElementById('nivel').value = "bajo peso";
+  }else if (masa >= 22 && masa <= 24.8) {
+    console.log(masa);
+    document.getElementById('nivel').value = "peso normal";
+  }else if (masa >= 24.9 && masa <= 29.9) {
+    console.log(masa);
+    document.getElementById('nivel').value = "sobrepeso";
+  }else if (masa >= 30 && imc2 <= 34.9) {
+    console.log(masa);
+    document.getElementById('nivel').value = "Obesidad tipo 1";
+  }else if (masa >= 35 && masa <= 39.9) {
+    console.log(masa);
+    document.getElementById('nivel').value = "Obesidad tipo 2";
+  }else if (masa >=  40) {
+    console.log(masa);
+    document.getElementById('nivel').value = "Obesidad tipo 3";
+  }
 }
 
 function  ingresar() {
@@ -199,12 +235,15 @@ genecobstetricos(gen);
 function genecobstetricos(genero)
 {
   //alert(genero);
+  console.log(genero+"en el log");
   if (genero == "FEMENINO") {
     $("#genecobstetricos").show();
     $("#genecobstetricos").removeAttr( "hidden" );
   }else {
     //$("#dropzone").attr( "hidden" );
+    console.log("se aculta");
     $("#genecobstetricos").hide();
+    $("#genecobstetricos").attr( "hidden" );
   }
 }
 ////---------------------------------------------------------------------------
@@ -216,6 +255,10 @@ function mayus(e) {
 function recargar() {
   location.reload();
 }
+function nf() {
+  console.log("todo bien");
+}
+
 
 function redireccionar()
 {
@@ -234,6 +277,9 @@ function sanitizar(texto) {
    while (noaceptados.exec(texto.value)) {
     texto.value =  texto.value.replace(noaceptados,'')
    }
+  function vert(textoa) {
+    console.log("No es valido");
+  }
    //console.log(texto.value.replace(noaceptados, ''));
  }else {
    console.log("Valido");

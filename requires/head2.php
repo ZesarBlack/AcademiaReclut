@@ -1,4 +1,5 @@
 <?php
+session_name('academiaIngresos');
 session_start();
 if (isset($_SESSION['usuario'])) {
   echo "";

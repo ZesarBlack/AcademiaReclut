@@ -3,7 +3,6 @@ class Medico{
 
      public function exafemenino()
      {
-
        echo '
        <h3>Antecedentes Ginecoobstétricos</h3> <br>
 
@@ -454,7 +453,11 @@ if (isset($_POST['tmedico'])) {
     }
 
     if (isset($_POST["tipo2"])) {
-      $nuevo->exafemenino();
+      if ($_POST["tipo2"] == "FEMENINO") {
+         $nuevo->exafemenino();
+      }else {
+        echo "";
+      }
     }
 
     if (isset($_POST["id_exa"]) && isset($_POST["id"])) {

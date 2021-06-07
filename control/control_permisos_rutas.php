@@ -73,6 +73,9 @@ class Rutas
             'lista_exa_fisico' => 1,
         ),
         array(
+            'detalle_cadete' => 1,
+        ),
+        array(
             'lista_exa_fisico' => 0,
         ),
         array(

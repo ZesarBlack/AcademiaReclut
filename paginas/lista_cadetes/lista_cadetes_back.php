@@ -57,27 +57,27 @@ class ListCadete
     //$conn->query("SET CHARACTER SET 'utf8'");
     if ($tipo != "" && $busqueda != "") {
       if ($tipo == "genero") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE genero LIKE '%$busqueda%' LIMIT 20";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE genero LIKE '%$busqueda%' LIMIT 0, 10";
       }elseif ($tipo == "edad") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE edad_registro like '%$busqueda%' LIMIT 20";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE edad_registro like '%$busqueda%' LIMIT 10";
       }elseif ($tipo == "folio") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE folio like '%$busqueda%' LIMIT 20";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE folio like '%$busqueda%' LIMIT 10";
       }elseif ($tipo == "reingreso") {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE tipo_ingreso like '%$busqueda%' LIMIT 20";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE tipo_ingreso like '%$busqueda%' LIMIT 10";
       }elseif ($tipo == "nombre") {
         $piezas = explode(" ", $busqueda);
         if(sizeof($piezas) == 1){
           $nombre = $piezas[0];
-          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE nombre like '%$nombre%' or a_paterno like '%$nombre%' ";
+          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE nombre like '%$nombre%' or a_paterno like '%$nombre%' LIMIT 10";
         }else if(sizeof($piezas) == 2){
           $nombre = $piezas[0];
           $paterno = $piezas [1];
-          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%') "; //nombre like '%$nombre2%'
+          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%') LIMIT 10"; //nombre like '%$nombre2%'
         }else if(sizeof($piezas) == 3){
           $nombre = $piezas[0];
           $paterno = $piezas[1];
           $materno = $piezas[2];
-          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%' and a_materno like '%$materno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%' AND  nombre like '%$materno%')";
+          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%' and a_materno like '%$materno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%' AND  nombre like '%$materno%') LIMIT 10";
         }else if(sizeof($piezas) == 4){
           $nombre = $piezas[0];
           $nombre2 = $piezas[0]." ".$piezas[1];
@@ -85,9 +85,9 @@ class ListCadete
           $paterno2 = $piezas[2];
           $materno = $piezas[2];
           $materno2 = $piezas[3];
-          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre2%' and a_paterno like '%$paterno2%' and a_materno like '%$materno2%')";
+          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre2%' and a_paterno like '%$paterno2%' and a_materno like '%$materno2%') LIMIT 10";
         }} else {
-        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete";
+        $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete LIMIT 10";
       }
     }
     if (isset($query_cadetes)) {
@@ -427,3 +427,8 @@ if (isset($_POST['tipor']) && $_POST['tipor'] !="") {
 
 
  ?>
+ SELECT DISTINCTROW folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+ c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
+ FROM cadete  AS c
+ INNER JOIN  exa_medico AS em ON cadete_id = folio
+ INNER JOIN examen_fisico AS ef ON cadete_idCadete = folio

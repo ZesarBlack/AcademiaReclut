@@ -9,7 +9,9 @@ if (isset($_SESSION['usuario'])) {
 }
 //require '../../control/control_permisos_rutas.php';
 include '../../control/control_permisos_rutas.php';
+include '../../control/auditoria.php';
 $ruta->verificarRutas(getcwd(),$_SESSION['rol']);
+$ruta->verificarRutas($_SESSION['usuario'], ,getcwd());
 ?>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

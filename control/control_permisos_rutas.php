@@ -38,7 +38,6 @@ class Rutas
         array(
             'usuarios' => 0,
         ),
-
         array(
             'cadetes' => 1,
         ),

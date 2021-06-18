@@ -93,9 +93,25 @@ class ListCadete
     if (isset($query_cadetes)) {
       // code...
       $resultado = $conn->query($query_cadetes);
-      $conn->close();
+
       //echo '<label>Rasultados:'.count($cadetes=mysqli_fetch_array($resultado)).' </label>';
       while ($cadetes=mysqli_fetch_array($resultado)) {
+        $query_docs="SELECT s_empleo, acta_nacimiento, doc_curp, identificacion_ine, lic_conducir, no_penales, comprobante_estudios, cartilla_smn, no_inhabiltado, baja_voluntaria,
+                     comprobante_domicilio, referencias_personales, curriculum, documento_rfc, documento_seguro_sosial FROM cadete WHERE folio = '$cadetes[8]'";
+          echo $query_docs;
+        $respuesta_docs = $conn->query($query_docs);
+        $docs=mysqli_fetch_array($respuesta_docs);
+        var_dump($docs[0]);
+        echo $docs[0];
+
+        if ($docs[0] == "Si" AND $docs[1] == "Si" AND $docs[2] == "Si" AND $docs[3] == "Si" AND $docs[4] == "Si" AND $docs[5] == "Si" AND $docs[6] == "Si" AND $docs[7] == "Si" AND $docs[8] == "Si" AND
+            $docs[9] == "Si" AND $docs[10] == "Si" AND $docs[1] == "Si" AND $docs[12] == "Si" AND $docs[13] == "Si" AND $docs[14] == "Si") {
+            $circulo="circuloVerde";
+        }else {
+            $circulo="circuloRojo";
+
+        }
+        //$circulo="circuloVerde";
               echo
                     '<tr>
                       <td><h2>'.$cadetes[0].'</h2></td>
@@ -106,6 +122,7 @@ class ListCadete
                       <td><h2>'.$cadetes[5].'</h2></td>
                       <td><h2>'.$cadetes[6].'</h2></td>
                       <td><h2>'.$cadetes[8].'</h2></td>
+                      <td><h2><div class="'.$circulo.'"></div></h2></td>
                        <td>
                          <form action="../detalle_cadete/detalles.php" method="post">
                            <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
@@ -129,7 +146,7 @@ class ListCadete
             return $cadetes;
     }
 
-
+      $conn->close();
   }
   public function cambiarValidez($id,$observaciones){
     require '../../requires/conexion.php';
@@ -144,6 +161,20 @@ class ListCadete
     $i=1;
     include '../../requires/conexion.php';
     if ($tipor === "todos") {
+      /*
+      $query_cadete="SELECT DISTINCT  folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion,
+      ef.resultado, ef.promedio, ef.manejo, tipo_ingreso, cadete_id, cadete_idCadete
+      FROM cadete as c
+      INNER JOIN exa_medico as em ON folio = cadete_id
+      INNER JOIN examen_fisico as ef ON folio = cadete_idCadete";
+      */
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete";
+
+      //$query_medico="SELECT conclusio FROM exa_medico WHERE obser = 'valoracion actual' cadete_id = folio";
+      //$query_fisico= "SELECT resultado, promedio, manejo WHERE cadete_idCadete = folio";
+      /*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -162,7 +193,12 @@ class ListCadete
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio";
       // code...
+      */
     }elseif ($tipor === "masculino") {
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete
+      WHERE genero = 'Masculino'";
+/*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -181,7 +217,12 @@ class ListCadete
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio WHERE genero LIKE '%Masculino%' ";
       // code...
+      */
     }elseif ($tipor === "femenino") {
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete
+      WHERE genero = 'femenino'";
+      /*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -199,8 +240,13 @@ class ListCadete
       FROM cadete  AS c
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio WHERE genero LIKE '%Femenino%'";
+      */
       // code...
     }elseif ($tipor === "reingreso") {
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete
+      WHERE tipo_ingreso = 'reingreso'";
+      /*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -218,8 +264,13 @@ class ListCadete
       FROM cadete  AS c
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio WHERE tipo_ingreso LIKE '%Reingreso%'";
+      */
       // code...
     }elseif ($tipor === "nuevos") {
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete
+      WHERE tipo_ingreso = 'Nuevo Ingreso'";
+      /*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -237,8 +288,13 @@ class ListCadete
       FROM cadete  AS c
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio WHERE tipo_ingreso LIKE '%Nuevo Ingreso%'";
+      */
       // code...
     }elseif ($tipor === "exp") {
+      $query_cadete2="SELECT folio, f_llenado, a_paterno, a_materno, nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
+      estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, tipo_ingreso FROM cadete
+      WHERE tipo_ingreso = 'SI'";
+      /*
       $query= "SELECT DISTINCT folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
       c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
       FROM cadete  AS c
@@ -256,10 +312,10 @@ class ListCadete
       FROM cadete  AS c
       RIGHT  JOIN  exa_medico AS em ON cadete_id = folio
       RIGHT  JOIN examen_fisico AS ef ON cadete_idCadete = folio WHERE exp_o_exm LIKE 'Si'";
+      */
       // code...
     }
-    $respuesta=$conn->query($query);
-    $conn->close();
+    $respuesta=$conn->query($query_cadete2);
 
     error_reporting(E_ALL);
     ini_set('display_errors', TRUE);
@@ -312,11 +368,20 @@ class ListCadete
                 ->setCellValue('AG1', 'MANEJA');
     //$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(100);
     while ($aptos=mysqli_fetch_array($respuesta)) {
+          $query_medico="SELECT conclusion FROM exa_medico WHERE obser = 'valoracion actual' AND cadete_id = '$aptos[0]'";
+          $query_fisico="SELECT resultado, promedio, manejo FROM examen_fisico WHERE cadete_idCadete = '$aptos[0]'";
+
+          $respuesta_medico= $conn->query($query_medico);
+          $respuesta_fisico= $conn->query($query_fisico);
+
+          $medico = mysqli_fetch_array($respuesta_medico);
+          $fisico = mysqli_fetch_array($respuesta_fisico);
+
           $i=$i+1;
           $objPHPExcel->setActiveSheetIndex(0)
                       ->setCellValue('A'.$i, $aptos[0])
                       ->setCellValue('B'.$i, $aptos[1])
-                      ->setCellValue('C'.$i, $aptos[2]." ".$aptos[3]." ".$aptos[4])
+                      ->setCellValue('C'.$i, $aptos[4]." ".$aptos[2]." ".$aptos[3])
                       ->setCellValue('D'.$i, $aptos[2])
                       ->setCellValue('E'.$i, $aptos[3])
                       ->setCellValue('F'.$i, $aptos[4])
@@ -343,14 +408,15 @@ class ListCadete
                       ->setCellValue('AA'.$i, $aptos[26])
                       ->setCellValue('AB'.$i, $aptos[27]." ".$aptos[28])
                       ->setCellValue('AC'.$i, $aptos[29])
-                      ->setCellValue('AD'.$i, $aptos[30])
-                      ->setCellValue('AE'.$i, $aptos[31])
-                      ->setCellValue('AF'.$i, $aptos[32])
-                      ->setCellValue('AG'.$i, $aptos[33])
+                      ->setCellValue('AD'.$i, $medico[0])
+                      ->setCellValue('AE'.$i, $fisico[0])
+                      ->setCellValue('AF'.$i, $fisico[1])
+                      ->setCellValue('AG'.$i, $fisico[2])
                       ;
 
 
     }
+    $conn->close();
     $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(25);
     $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
     $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(25);
@@ -402,7 +468,6 @@ class ListCadete
     // Save Excel 2007 file
     //echo date('H:i:s') , " Write to Excel2007 format" , EOL;
     $callStartTime = microtime(true);
-
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
     $objWriter->save(str_replace('.php', '.xlsx', "Lista_cadetes.xlsx"));
     $callEndTime = microtime(true);
@@ -424,11 +489,4 @@ if (isset($_POST["id"])) {
 if (isset($_POST['tipor']) && $_POST['tipor'] !="") {
   $listaCadetes->axcelAspirantes($_POST['tipor']);
 }
-
-
  ?>
- SELECT DISTINCTROW folio, f_llenado, a_paterno, a_materno, c.nombre, f_nacimiento, edad_registro , curp, rfc, genero, estado_civil, calle, n_interior, colonia, municipio,
- c.estado, c_postal, nolic,  nocartilla ,tel_celular, tel_1,  tel_2, email, grado_estudio, carrera_g , exp_o_exm, dependencia, entidad_dep, municipio_dep, metodo_e_empleo, em.conclusion, ef.resultado, ef.promedio, ef.manejo, tipo_ingreso
- FROM cadete  AS c
- INNER JOIN  exa_medico AS em ON cadete_id = folio
- INNER JOIN examen_fisico AS ef ON cadete_idCadete = folio

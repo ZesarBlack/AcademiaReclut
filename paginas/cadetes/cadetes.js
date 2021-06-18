@@ -2,9 +2,10 @@ var noaceptados = /[¿?!¡#$"_%&()<>./]/;
 var noaceptadoscorreo = /[¿?!¡#$"%&()<>/]/;
 var t_ingreso ="";
 var ingresos = "";
+var genero = "";
+var tipo = "";
 
 $(document).ready(() => {
-
   $("#fechan").focusout(  () => {
     let value = $("#fechan").val();
     let hoy = new Date();
@@ -90,20 +91,63 @@ $(document).ready(function(){
 });
 
 function especificar(tipoM){
+  switch (tipoM) {
+    case "POLICIA MUNICIPAL":
+      $("#identificacion").show();
+      $("#municipio_act").show();
+      $("#municipio_act").removeAttr( "hidden" );
+      $("#entidad_act").show();
+      $("#entidad_act").removeAttr( "hidden" );
+      break;
+    case "POLICIA ESTATAL":
+      $("#identificacion").show();
+      $("#entidad_act").show();
+      $("#entidad_act").removeAttr( "hidden" );
+      $("#municipio_act").hide();
+      break;
+    case "POLICIA AUXILIAR":
+      $("#identificacion").show();
+      $("#entidad_act").hide();
+      $("#municipio_act").hide();
+      break;
+    case "POLICIA FEDERAL":
+      $("#identificacion").show();
+      $("#entidad_act").hide();
+      $("#municipio_act").hide();
+      break;
+    case "MILITAR":
+      $("#identificacion").show();
+      $("#entidad_act").hide();
+      $("#municipio_act").hide();
+      break;
+    default:
+      $("#entidad_act").hide();
+      $("#municipio_act").hide();
+      $("#identificacion").hide();
+  }
+  /*
   if (tipoM == "POLICIA MUNICIPAL") {
+    $("#identificacion").show();
     $("#municipio_act").show();
     $("#municipio_act").removeAttr( "hidden" );
     $("#entidad_act").show();
     $("#entidad_act").removeAttr( "hidden" );
     //$("#dropzone").hide();
   }else if (tipoM == "POLICIA ESTATAL") {
+    $("#identificacion").show();
     $("#entidad_act").show();
     $("#entidad_act").removeAttr( "hidden" );
     $("#municipio_act").hide();
-  }else {
+  }else if (tipoM == "MILITAR") {
+    $("#identificacion").show();
     $("#entidad_act").hide();
     $("#municipio_act").hide();
+  }else{
+    $("#entidad_act").hide();
+    $("#municipio_act").hide();
+    $("#identificacion").hide();
   }
+  */
 }
 
 $(document).ready(function(){
@@ -178,5 +222,27 @@ function tipoIngreso(ingreso) {
   }else if (ingreso=="Reingreso") {
     $("#reingreso").show();
     $("#reingreso").removeAttr("hidden");
+  }
+}
+
+function mujerCartillamilitar(genero) {
+  console.log(genero.value);
+  tipo = genero.value;
+  if (tipo == "FEMENINO") {
+    document.getElementById('nocartilla').value = "SN";
+    $("#nocartilla").prop('disabled', true);
+
+    $("#cartilla_observacion").prop('disabled', true);
+    document.getElementById('cartilla_observacion').value="NO REQUERIDO";
+
+    $("#cartillaM").hide();
+  }else {
+    $("#nocartilla").prop('disabled', false);
+    document.getElementById('nocartilla').value = "";
+
+    $("#cartilla_observacion").prop('disabled', false);
+    document.getElementById('cartilla_observacion').value="";
+
+    $("#cartillaM").show();
   }
 }

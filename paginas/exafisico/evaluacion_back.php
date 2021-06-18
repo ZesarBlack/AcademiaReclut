@@ -12,7 +12,6 @@ class Evaluado{
           // code...
           $query="SELECT folio ,nombre, a_paterno, a_materno, genero, edad_registro, curp, email, idCadete FROM cadete where folio = '$busqueda'";
         }elseif ($tipo=="nombre") {
-
           $piezas = explode(" ", $busqueda);
           if(sizeof($piezas) == 1){
             $nombre = $piezas[0];
@@ -44,41 +43,60 @@ class Evaluado{
 //----------------------------------------------
         $resultado = $conn->query($query);
         if ($datos=mysqli_fetch_array($resultado)) {
+          $query_fisico="SELECT * FROM exa_medico WHERE conclusion = 'apto' AND obser ='valoracion actual' AND cadete_id = '$datos[0]'";
+          $resultado_fisico = $conn->query($query_fisico);
+          if ($datos2 = mysqli_fetch_array($resultado_fisico)) {
+            echo '
+            <tr>
+              <td><input type="text" id="id" name="id" size=10 value="'.$datos[8].'" readonly></td>
+              <td><input type="text" id="folio" size=8 name="folio" value="'.$datos[0].'" required readonly></td>
+              <td><input type="text" id="nombre" name="nombre" size=10 value="'.$datos[1].'" readonly></td>
+              <td><input type="text" id="apellidop" name="apellidop" value="'.$datos[2].'" readonly></td>
+              <td><input type="text" id="apellidom" name="apellidom" value="'.$datos[3].'" readonly></td>
+              <td><input type="text" id="edad" name="edad" value="'.$datos[5].'"  readonly></td>
+              <td><input type="text" id="sexo" name="sexo" value="'.$datos[4].'"  readonly></td>
+              <td><input type="text" id="curp" name="sexo" value="'.$datos[6].'"  readonly></td>
+            </tr>
+            ';
+          }else {
+            echo "El aspirante no reune los requisitos para hacer el examen físico";
+          }
           //echo json_encode($datos);
           //echo "encontrado";
           //echo $query ;
-          echo '
-          <tr>
-	          <td><input type="text" id="id" name="id" size=10 value="'.$datos[8].'" readonly></td>
-            <td><input type="text" id="folio" size=8 name="folio" value="'.$datos[0].'" required readonly></td>
-            <td><input type="text" id="nombre" name="nombre" size=10 value="'.$datos[1].'" readonly></td>
-            <td><input type="text" id="apellidop" name="apellidop" value="'.$datos[2].'" readonly></td>
-            <td><input type="text" id="apellidom" name="apellidom" value="'.$datos[3].'" readonly></td>
-            <td><input type="text" id="edad" name="edad" value="'.$datos[5].'"  readonly></td>
-            <td><input type="text" id="sexo" name="sexo" value="'.$datos[4].'"  readonly></td>
-            <td><input type="text" id="curp" name="sexo" value="'.$datos[6].'"  readonly></td>
-          </tr>
-          ';
-        }else {
-          //echo $query ;
-          //$mensaje="El aspirante no ha sido encontrado";
-          //echo  $mensaje;
         }
       }
+/*
       public function actualizarEvaluacion()
       {
         include '../../requires/conexion.php';
 
       }
+*/
       public function guardardatos($idcadete, $resmts, $rescal, $flexcm, $flexcal, $abcant, $abcal, $lagcant, $lagcal, $sentcant, $sentcal, $velcant, $velcal, $manejo, $total, $resultado, $nomeva, $promedio, $observacion){
         include '../../requires/conexion.php';
         //$conn->query("SET CHARACTER SET 'utf8'");
-        $hoy = date("Y-m-d");
-        $consulta= "INSERT INTO examen_fisico(resistencia_mts, resistencia_cal, flexibilidad_cm, flexibilidad_cal, abdominal_cant, abdominal_cal, lagartija_cant, lagartija_cal, sentadilla_cant, sentadilla_cal,velocidad_tpo, velocidad_cal, manejo, total, resultado, instructor,cadete_idCadete, fecha_registro, promedio, observacion) values ('$resmts', '$rescal', '$flexcm' ,'$flexcal', '$abcant', '$abcal', '$lagcant' ,'$lagcal', '$sentcant', '$sentcal','$velcant', '$velcal', '$manejo','$total' , '$resultado', '$nomeva' ,'$idcadete', '$hoy', '$promedio', '$observacion')";
-
-        $resultado= mysqli_query($conn, $consulta);
-                    echo $consulta;
-                    $conn->close();
+        $query_verificar="SELECT COUNT(cadete_idCadete) FROM examen_fisico WHERE cadete_idCadete = '$idcadete'";
+        $respuesta_verificar = $conn->query($query_verificar);
+        $verificar= mysqli_fetch_array($respuesta_verificar);
+        if ($verificar[0] > 0 && !is_null($verificar)) {
+          $hoy = date("Y-m-d");
+          $consulta = "UPDATE examen_fisico SET resistencia_mts = '$resmts', resistencia_cal = '$rescal',
+            flexibilidad_cm = '$flexcm', flexibilidad_cal = '$flexcal', abdominal_cant = '$abcant', abdominal_cal = '$abcal', lagartija_cant = '$lagcant',
+            lagartija_cal = '$lagcal', sentadilla_cant = '$sentcant', sentadilla_cal = '$sentcal',
+            velocidad_tpo = '$velcant', velocidad_cal = '$velcal', manejo = '$manejo', total = '$total', resultado = '$resultado',
+            instructor = '$nomeva', cadete_idCadete = '$idcadete', fecha_registro = '$hoy', promedio = '$promedio', observacion = '$observacion' WHERE cadete_idCadete = '$idcadete'";
+        $conn->query($consulta);
+        }else {
+          $hoy = date("Y-m-d");
+          $consulta= "INSERT INTO examen_fisico(resistencia_mts, resistencia_cal, flexibilidad_cm, flexibilidad_cal, abdominal_cant, abdominal_cal, lagartija_cant, lagartija_cal, sentadilla_cant,
+          sentadilla_cal,velocidad_tpo, velocidad_cal, manejo, total, resultado, instructor,cadete_idCadete, fecha_registro, promedio, observacion)
+          values ('$resmts', '$rescal', '$flexcm' ,'$flexcal', '$abcant', '$abcal', '$lagcant' ,'$lagcal', '$sentcant', '$sentcal','$velcant', '$velcal', '$manejo','$total' , '$resultado', '$nomeva' ,
+          '$idcadete', '$hoy', '$promedio', '$observacion')";
+          $conn->query($consulta);
+        }
+        echo $consulta;
+        $conn->close();
       }
   }
 

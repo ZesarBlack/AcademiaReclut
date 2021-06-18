@@ -47,7 +47,6 @@
                               </button>
                                 <!-- content starts here ////////////////////-->
               <form name="form1" method="POST" action="PDF.php">
-
                 <div class="row tile_count">
                     <div class="col-md-2 form-group has-feedback">
                           <input type="text" onkeyup="sanitizar(this)" class="form-control has-feedback-left"
@@ -1375,19 +1374,21 @@
                                           </span>
                                 </div>
                       </div>
-
-
+                      <!--
                       <div class="row tile_count">
-                          <div class="col-md-12 form-group has-feedback">
-                                      <input type="text" onkeyup="sanitizar(this)" class="form-control has-feedback-left"
-                                            id="obser" placeholder="Observaciones" name="obser" style='font-size: 10pt;
-                                            font-weight: bold; color: red; text-align: center;' required>
-                                            Observaciones
-                                            <div class="help-info"></div>
-                                            <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
-                                            </span>
-                          </div>
-                          </div>
+                        <div class="col-md-6 form-group has-feedback">
+                              <input type="text" onkeyup="sanitizar(this)" class="form-control has-feedback-left"
+                                  id="obser" placeholder="Observaciones" name="obser" style='font-size: 10pt;
+                                  font-weight: bold; color: red; text-align: center;' >
+                                  Observaciones
+                                  <div class="help-info"></div>
+                                  <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                  </span>
+                        </div>
+                      </div>
+                    -->
+                      <textarea  onkeyup="sanitizar(this)" class="form-control" id="obser" placeholder="Observaciones" name="obser" rows="8" cols="80"></textarea>
+
                 </div>
 
 
@@ -1426,19 +1427,15 @@
                                   </span>
                 </div>
             </div>
-
-
-                    <div class="row tile_count">
-                        <div class="col-xs-10 tile_stats_count">
-                              <div style="text-align:center;">
+            <div class="row tile_count">
+                  <div class="col-xs-10 tile_stats_count">
+                        <div style="text-align:center;">
                               <button type="submit" name="guardar" id="guardar" class="btn btn-primary" style="background-color:green; width:20%;  ">Guardar</button>
-                              </div>
-                              </div>
-                    </div>
-
                         </div>
-
-                  </form>
+                  </div>
+            </div>
+        </div>
+    </form>
                                 <!-- content ends here////////////////////// -->
                             </div>
                         </div>

@@ -943,14 +943,14 @@ $aspirante = new Aspirante();
 
       //$_POST['rfc'],$_POST['nolic'],$_POST['nocartilla'];
 
-if (isset($_POST['folio'])) {
-  $aspirante->nuevo($llenado, $tipoIngreso, $folio, $paterno, $materno, $nombre, $fechan, $edad, $genero, $curp,
-  $correo, $_POST['celular'], $_POST['telef-1'], $_POST['telef-2'], $grado_es, $exPoli, $estadoCivil, $medioInfo, $dep_acterior ,$calle, $ext, $int,
-  $codpostal, $colonia, $municipio, $estado, $solicitud_completa, $solicitud_observacion, $acta_nac, $acta_nac_observacion, $doc_curp, $doc_curp_observacion, $doc_id, $doc_id_observacion,
-  $doc_licencia, $doc_licencia_observacion, $const_ante, $const_ante_observacion, $comp_estudios, $comp_estudios_observacion, $cartilla, $cartilla_observacion, $const_no_sus, $const_no_sus_observacion, $baja_voluntaria,
-  $baja_voluntaria_observacion, $comp_domicilio, $comp_domicilio_observacion, $referencias, $referencias_observacion, $curriculum, $curriculum_observacion, $rfc, $rfc_observacion, $imss, $imss_observacion,
-  $_POST['entidad_act'], $_POST['municipio_act'], $_POST['norfc'],$_POST['nolic'], $_POST['nocartilla'], $_POST['estatus_es'], $_POST['carrera_g'], $_POST['f_inicial'],  $_POST['f_formacion']);
-}
+      if (isset($_POST['folio'])) {
+        $aspirante->nuevo($llenado, $tipoIngreso, $folio, $paterno, $materno, $nombre, $fechan, $edad, $genero, $curp,
+        $correo, $_POST['celular'], $_POST['telef-1'], $_POST['telef-2'], $grado_es, $exPoli, $estadoCivil, $medioInfo, $dep_acterior ,$calle, $ext, $int,
+        $codpostal, $colonia, $municipio, $estado, $solicitud_completa, $solicitud_observacion, $acta_nac, $acta_nac_observacion, $doc_curp, $doc_curp_observacion, $doc_id, $doc_id_observacion,
+        $doc_licencia, $doc_licencia_observacion, $const_ante, $const_ante_observacion, $comp_estudios, $comp_estudios_observacion, $cartilla, $cartilla_observacion, $const_no_sus, $const_no_sus_observacion, $baja_voluntaria,
+        $baja_voluntaria_observacion, $comp_domicilio, $comp_domicilio_observacion, $referencias, $referencias_observacion, $curriculum, $curriculum_observacion, $rfc, $rfc_observacion, $imss, $imss_observacion,
+        $_POST['entidad_act'], $_POST['municipio_act'], $_POST['norfc'],$_POST['nolic'], $_POST['nocartilla'], $_POST['estatus_es'], $_POST['carrera_g'], $_POST['f_inicial'],  $_POST['f_formacion'], $_POST['identificacion']);
+      }
 
       if (isset($_POST["nombre"])&& isset($_FILES["file"]["name"]) && isset($_FILES["file"]["tmp_name"])) {
           $aspirante -> subirArchivo($_POST["nombre"],$_FILES["file"]["name"], $_FILES["file"]["tmp_name"]);
@@ -1020,7 +1020,7 @@ if (isset($_POST['folio'])) {
                                 $codpostal, $colonia, $municipio, $estado, $solicitud_completa, $solicitud_observacion, $acta_nac, $acta_nac_observacion, $doc_curp, $doc_curp_observacion, $doc_id, $doc_id_observacion,
                                 $doc_licencia, $doc_licencia_observacion, $const_ante, $const_ante_observacion, $comp_estudios, $comp_estudios_observacion, $cartilla, $cartilla_observacion, $const_no_sus, $const_no_sus_observacion, $baja_voluntaria,
                                 $baja_voluntaria_observacion, $comp_domicilio, $comp_domicilio_observacion, $referencias, $referencias_observacion, $curriculum, $curriculum_observacion, $rfc, $rfc_observacion, $imss, $imss_observacion,
-                                 $entidad_dep, $municipio_dep, $norfc, $nolic, $nocartilla, $estatus_estudio, $carrera_g, $formacion_i, $fecha_formacion)
+                                 $entidad_dep, $municipio_dep, $norfc, $nolic, $nocartilla, $estatus_estudio, $carrera_g, $formacion_i, $fecha_formacion, $matricula_cuip)
                                 {
                                     include '../../requires/conexion.php';
                                     $query ="SELECT folio  FROM cadete where folio = '$folio'";
@@ -1032,13 +1032,13 @@ if (isset($_POST['folio'])) {
                                                           c_postal ,  colonia ,  municipio, estado,  s_empleo ,  s_empleo_observacion ,  acta_nacimiento ,  acta_nacimiento_observacion ,  doc_curp ,  doc_curp_observacion ,  identificacion_ine ,  identificacion_ine_observacion ,
                                                           lic_conducir ,  lic_conducir_obervacion ,  no_penales ,  no_penales_observacion ,  comprobante_estudios ,  comprobante_estudios_observacion ,  cartilla_smn ,  cartilla_smn_observacion ,  no_inhabiltado ,  no_inhabilitado_observacion ,  baja_voluntaria ,
                                                           baja_voluntaria_observacion ,  comprobante_domicilio ,  comprobante_domicilio_observacion ,  referencias_personales ,  referencias_personales_observacion ,  curriculum ,  curriculum_observacion ,  documento_rfc ,  documento_rfc_observacion ,  documento_seguro_sosial ,  documento_seguro_sosial_observacion,
-                                                          entidad_dep, municipio_dep, rfc, nolic, nocartilla, estatus_escolaridad, carrera_g, formacion_inical, fecha_formacion_inical)
+                                                          entidad_dep, municipio_dep, rfc, nolic, nocartilla, estatus_escolaridad, carrera_g, formacion_inical, fecha_formacion_inical, matricula_cuip)
                                                           values ('$llenado', '$tipoIngreso', '$folio', '$paterno', '$materno', '$nombre', '$fechan', '$edad', '$genero', '$curp',
                                                           '$correo','$celular', '$telef1', '$telef2', '$grado_es', '$exPoli', '$estadoCivil', '$medioInfo', '$dep_acterior' ,'$calle', '$ext', '$int',
                                                           '$codpostal', '$colonia', '$municipio', '$estado', '$solicitud_completa', '$solicitud_observacion', '$acta_nac', '$acta_nac_observacion', '$doc_curp', '$doc_curp_observacion', '$doc_id', '$doc_id_observacion',
                                                           '$doc_licencia', '$doc_licencia_observacion','$const_ante', '$const_ante_observacion','$comp_estudios', '$comp_estudios_observacion', '$cartilla', '$cartilla_observacion', '$const_no_sus', '$const_no_sus_observacion', '$baja_voluntaria',
                                                           '$baja_voluntaria_observacion', '$comp_domicilio','$comp_domicilio_observacion', '$referencias', '$referencias_observacion', '$curriculum', '$curriculum_observacion' ,'$rfc', '$rfc_observacion','$imss', '$imss_observacion', '$entidad_dep', '$municipio_dep', '$norfc', '$nolic', '$nocartilla',
-                                                          '$estatus_estudio', '$carrera_g', '$formacion_i', '$fecha_formacion')";
+                                                          '$estatus_estudio', '$carrera_g', '$formacion_i', '$fecha_formacion','$matricula_cuip')";
                                                           echo $sql;
                                       $conn->query($sql);
                                       $conn->close();
@@ -1048,7 +1048,7 @@ if (isset($_POST['folio'])) {
                                                           c_postal='$codpostal' ,  colonia='$colonia' ,  municipio='$municipio', estado='$estado' ,  s_empleo='$solicitud_completa' ,  s_empleo_observacion='$solicitud_observacion' ,  acta_nacimiento='$acta_nac' ,  acta_nacimiento_observacion='$acta_nac_observacion' ,  doc_curp='$doc_curp' ,  doc_curp_observacion='$doc_curp_observacion' ,  identificacion_ine='$doc_id' ,  identificacion_ine_observacion='$doc_id_observacion',
                                                           lic_conducir ='$doc_licencia' ,  lic_conducir_obervacion='$doc_licencia_observacion' ,  no_penales='$const_ante' ,  no_penales_observacion='$const_ante_observacion' ,  comprobante_estudios='$comp_estudios' ,  comprobante_estudios_observacion='$comp_estudios_observacion' ,  cartilla_smn='$cartilla' ,  cartilla_smn_observacion='$cartilla_observacion' ,  no_inhabiltado='$const_no_sus' ,  no_inhabilitado_observacion='$const_no_sus_observacion' ,  baja_voluntaria='$baja_voluntaria' ,
                                                           baja_voluntaria_observacion='$baja_voluntaria' ,  comprobante_domicilio='$comp_domicilio' ,  comprobante_domicilio_observacion='$comp_domicilio_observacion' ,  referencias_personales='$referencias' ,  referencias_personales_observacion='$referencias_observacion' ,  curriculum='$curriculum' ,  curriculum_observacion='$curriculum_observacion' ,  documento_rfc='$rfc' ,  documento_rfc_observacion='$rfc_observacion' ,  documento_seguro_sosial='$imss' ,  documento_seguro_sosial_observacion='$imss_observacion', entidad_dep ='$entidad_dep', municipio_dep='$municipio_dep',
-                                                          rfc='$norfc', nolic ='$nolic', nocartilla='$nocartilla', estatus_escolaridad ='$estatus_estudio', carrera_g = '$carrera_g', formacion_inical = '$formacion_i',fecha_formacion_inical = '$fecha_formacion'
+                                                          rfc='$norfc', nolic ='$nolic', nocartilla='$nocartilla', estatus_escolaridad ='$estatus_estudio', carrera_g = '$carrera_g', formacion_inical = '$formacion_i',fecha_formacion_inical = '$fecha_formacion', matricula_cuip='$matricula_cuip'
                                                           WHERE folio = $folio";
                                                           echo $sql;
                                       $conn->query($sql);

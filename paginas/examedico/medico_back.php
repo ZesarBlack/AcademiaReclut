@@ -202,7 +202,114 @@ class Medico{
         include '../../requires/conexion.php';
         $querye="SELECT * FROM exa_medico WHERE idExa = '$id'";
         $resultado = $conn->query($querye);
-        if ($examed=mysqli_fetch_row($resultado)) {
+        if ($examed=mysqli_fetch_array($resultado)) {
+          $query_cad="SELECT * FROM cadete WHERE folio = '$examed[117]'";
+          $resultado_cad = $conn->query($query_cad);
+          $cad=mysqli_fetch_row($resultado_cad);
+          //echo $query_cad;
+          echo '
+          <div class="row tile_count">
+            <div class="col-md-4 form-group has-feedback">
+              <input type="text"  maxlength="30"  class="form-control has-feedback-left"
+                    id="aspirante" placeholder="Nombre(s)"  value="'.$cad[6].'" name="aspirante" style="font-size: 10pt;
+                    font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                    Nombre(s)
+                    <div class="help-info"></div>
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true">
+                    </span>
+            </div>
+
+           <div class="col-md-4 form-group has-feedback">
+              <input type="text"  maxlength="20" class="form-control has-feedback-left"
+                    id="paterno" placeholder="Apellido Paterno" value="'.$cad[4].'" name="paterno" style="font-size: 10pt;
+                    font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                    Apellido Paterno
+                    <div class="help-info"></div>
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true">
+                    </span>
+           </div>
+            <div class="col-md-4 form-group has-feedback">
+                  <input type="text"  maxlength="20"  class="form-control has-feedback-left"
+                        id="materno" placeholder="Apellido Materno" value="'.$cad[5].'" name="materno" style="font-size: 10pt;
+                        font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                        Apellido Materno
+                        <div class="help-info"></div>
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true">
+                        </span>
+            </div>
+          </div>
+          <div class="row tile_count">
+             <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                    <input type="text" maxlength="20"  class="form-control has-feedback-left"
+                          id="sexo" placeholder="Sexo" name="sexo" value="'.$cad[9].'" style="font-size: 12pt;
+                          font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                          Sexo
+                          <div class="help-info"></div>
+                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                          </span>
+              </div>
+
+              <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                    <input type="text"  maxlength="20" class="form-control has-feedback-left"
+                          id="edad" placeholder="Edad" name="edad" value="'.$cad[8].'" style="font-size: 12pt;
+                          font-weight: bold; color: red; text-align: center;" >
+                          Edad
+                          <div class="help-info"></div>
+                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                          </span>
+              </div>
+
+              <div class="col-md-4 col-sm-4 form-group has-feedback">
+                      <input type="date"  maxlength="45"  class="form-control has-feedback-left"
+                          id="fechaNac" placeholder="Fecha de nacimiento " value="'.$cad[7].'" name="fechaNac" style="font-size: 12pt;
+                          font-weight: bold; color: red; text-align: center;" >
+                          Fecha de nacimiento
+                      <div class="help-info"></div>
+                          <span class="fa fa-calendar form-control-feedback left" aria-hidden="true">
+                          </span>
+              </div>
+            </div>
+          <div class="row tile_count">
+                <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                      <input type="text"  maxlength="45" class="form-control has-feedback-left"
+                            id="escolaridad" placeholder="Escolaridad" value="'.$cad[15].'"  name="escolaridad" style="font-size: 12pt;
+                            font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                            Escolaridad
+                            <div class="help-info"></div>
+                            <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                            </span>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                      <input type="text"  maxlength="45" class="form-control has-feedback-left"
+                            id="estadoc" placeholder="Estado Civíl" value="'.$cad[17].'" name="estadoc" style="font-size: 12pt;
+                            font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                            Estado Civíl
+                            <div class="help-info"></div>
+                            <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                            </span>
+                </div>
+            </div>
+            <div class="row tile_count">
+                <div class="col-md-6 col-sm-6 col-xs-4 form-group has-feedback">
+                      <input type="text"  maxlength="60"  class="form-control has-feedback-left"
+                            id="domicilio" placeholder="Domicilio Particular" value="'.$cad[20].'" name="domicilio" style="font-size: 12pt;
+                            font-weight: bold; color: red; text-align: center;" onkeyup="mayus(this);">
+                            Domicilio Particular
+                            <div class="help-info"></div>
+                            <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                            </span>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                      <input type="text"  maxlength="10"  class="form-control has-feedback-left"
+                            id="numerotel" placeholder="Número de teléfono" value="'.$cad[12].'" name="numerotel" style="font-size: 12pt;
+                            font-weight: bold; color: red; text-align: center;" >
+                            Número de teléfono
+                            <div class="help-info"></div>
+                            <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                            </span>
+                </div>
+              </div>
+          ';
           //echo $querye;
           return $examed;
         }else {
@@ -236,16 +343,16 @@ class Medico{
           $piezas = explode(" ", $busqueda);
           if(sizeof($piezas) == 1){
             $nombre = $piezas[0];
-            $query_cadetes = "SELECT idExa, nombre, paterno, materno, fecha_nac, domicilio, conclusion, cadete_id, estado, fecha_eva FROM exa_medico WHERE nombre like '%$busqueda%'  or paterno like '%$nombre%' ORDER BY fecha_eva DESC, idExa DESC";
+            $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, calle, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE nombre like '%$nombre%' or a_paterno like '%$nombre%' LIMIT 10";
           }else if(sizeof($piezas) == 2){
             $nombre = $piezas[0];
             $paterno = $piezas [1];
-            $query_cadetes = "SELECT idExa, nombre, paterno, materno, fecha_nac, domicilio, conclusion, cadete_id, estado, fecha_eva FROM exa_medico WHERE (nombre like '%$nombre%' and paterno like '%$paterno%') or (paterno like '%$nombre%' and materno like '%$paterno%') ORDER BY fecha_eva DESC,idExa DESC"; //nombre like '%$nombre2%'
+            $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, calle, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%') LIMIT 10"; //nombre like '%$nombre2%'
           }else if(sizeof($piezas) == 3){
             $nombre = $piezas[0];
             $paterno = $piezas[1];
             $materno = $piezas[2];
-            $query_cadetes = "SELECT idExa, nombre, paterno, materno, fecha_nac, domicilio, conclusion, cadete_id, estado, fecha_eva FROM exa_medico WHERE (nombre like '%$nombre%' and paterno like '%$paterno%' and materno like '%$materno%') or (paterno like '%$nombre%' and materno like '%$paterno%' AND  nombre like '%$materno%') ORDER BY fecha_eva DESC, idExa DESC";
+            $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, calle, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre%' and a_paterno like '%$paterno%' and a_materno like '%$materno%') or (a_paterno like '%$nombre%' and a_materno like '%$paterno%' AND  nombre like '%$materno%') LIMIT 10";
           }else if(sizeof($piezas) == 4){
             $nombre = $piezas[0];
             $nombre2 = $piezas[0]." ".$piezas[1];
@@ -253,54 +360,66 @@ class Medico{
             $paterno2 = $piezas[2];
             $materno = $piezas[2];
             $materno2 = $piezas[3];
-            $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion, fecha_eva FROM cadete WHERE (nombre like '%$nombre2%' and a_paterno like '%$paterno2%' and a_materno like '%$materno2%')";
+            $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, calle, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE (nombre like '%$nombre2%' and a_paterno like '%$paterno2%' and a_materno like '%$materno2%') LIMIT 10";
           }
           $resultado = $conn->query($query_cadetes);
-          //echo $query_cadetes;
+          echo $query_cadetes;
           while ($cad=mysqli_fetch_row($resultado)) {
-            echo '
-            <tr>
-            <td>'. $cad[0].'</td>
-            <td>'. $cad[1].'</td>
-            <td>'. $cad[2].'</td>
-            <td>'. $cad[3].'</td>
-            <td>'. $cad[4].'</td>
-            <td>'. $cad[5].'</td>
-            <td>'. $cad[9].'</td>
-            <td>'. $cad[6].'</td>
-            <td>
-            <form class="" action="revalorar_medico.php" method="post">
-              <input type="text" name="idCad" value="'.$cad[0].'" hidden>
-              <button type="submit" class="btn btn-primary glyphicon">Revalorar</button>
-            </form>
-            </td>
-            </tr>
-            ';
+            $query_infocad="SELECT conclusion, fecha_eva, idExa, obser FROM exa_medico WHERE cadete_id = '$cad[9]'";
+            $respuesta_infocad = $conn->query($query_infocad);
+            while ($infocad = mysqli_fetch_array($respuesta_infocad)) {
+
+                echo '
+                <tr>
+                <td>'. $cad[9].'</td>
+                <td>'. $cad[0].'</td>
+                <td>'. $cad[1].'</td>
+                <td>'. $cad[2].'</td>
+                <td>'. $cad[4].'</td>
+                <td>'. $cad[5].'</td>
+                <td>'. $infocad[1].'</td>
+                <td>'. $infocad[3].'</td>
+                <td>'. $infocad[0].'</td>
+                <td>
+                <form class="" action="revalorar_medico.php" method="post">
+                  <input type="text" name="idCad" value="'.$infocad[2].'" hidden>
+                  <button type="submit" class="btn btn-primary glyphicon">Revalorar</button>
+                </form>
+                </td>
+                </tr>
+                ';
+            }
+
           }
         }elseif($tipo=="folio") {
         //$query="SELECT cad.folio, cad.nombre, cad.a_paterno, cad.a_materno, cad.f_nacimiento, cad.curp, cad.email  FROM exa_medico AS em INNER JOIN cadete AS cad  ON em.cadete_id = cad.folio WHERE em.cadete_id like '%$busqueda%'";
-        $query="SELECT idExa ,nombre, paterno, materno, fecha_nac, domicilio, conclusion, cadete_id, fecha_eva FROM exa_medico WHERE cadete_id like '%$busqueda%' ORDER BY fecha_eva DESC,idExa DESC";
+        $query="SELECT idExa ,nombre, paterno, materno, fecha_nac, domicilio, conclusion, cadete_id, fecha_eva, obser FROM exa_medico WHERE cadete_id like '%$busqueda%' ORDER BY fecha_eva DESC,idExa DESC LIMIT 10";
           //echo $query;
           $resultado = $conn->query($query);
           while ($cad=mysqli_fetch_row($resultado)) {
-            echo '
-            <tr>
-            <td>'. $cad[7].'</td>
-            <td>'. $cad[1].'</td>
-            <td>'. $cad[2].'</td>
-            <td>'. $cad[3].'</td>
-            <td>'. $cad[4].'</td>
-            <td>'. $cad[5].'</td>
-            <td>'. $cad[8].'</td>
-            <td>'. $cad[6].'</td>
-            <td>
-            <form class="" action="revalorar_medico.php" method="post">
-              <input type="text" name="idCad" value="'.$cad[0].'" hidden>
-              <button type="submit" class="btn btn-primary glyphicon">Revalorar</button>
-            </form>
-            </td>
-            </tr>
-            ';
+            $query_infocad="SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, calle FROM cadete WHERE folio = '$cad[7]'";
+            $respuesta_infocad = $conn->query($query_infocad);
+            while ($infocad = mysqli_fetch_array($respuesta_infocad)) {
+              echo '
+              <tr>
+              <td>'. $cad[7].'</td>
+              <td>'. $infocad[0].'</td>
+              <td>'. $infocad[1].'</td>
+              <td>'. $infocad[2].'</td>
+              <td>'. $infocad[3].'</td>
+              <td>'. $infocad[4].'</td>
+              <td>'. $cad[8].'</td>
+              <td>'. $cad[9].'</td>
+              <td>'. $cad[6].'</td>
+              <td>
+              <form class="" action="revalorar_medico.php" method="post">
+                <input type="text" name="idCad" value="'.$cad[0].'" hidden>
+                <button type="submit" class="btn btn-primary glyphicon">Revalorar</button>
+              </form>
+              </td>
+              </tr>
+              ';
+            }
           }
 
         }

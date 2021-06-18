@@ -73,7 +73,8 @@
                                         <th>Fechas de nacimiento</th>
                                         <th>Dirección</th>
                                         <th>Fecha de evaluacio o Revaloración</th>
-                                        <th>conclusión</th>
+                                        <th>Tipo de evaluación</th>
+                                        <th>Conclusión</th>
                                       </tr>
                                     </thead>
                                     <tbody id="datos">

@@ -2,7 +2,7 @@
 <html lang="en">
   <?php require '../../requires/head2.php';
   include 'home_back.php';
-  $materia = new Materias();
+  //$materia = new Materias();
   ?>
 
   <body class="nav-md">
@@ -125,7 +125,7 @@
                               // code...
                               $materia->obtenerMaterias();
                             }
-                            
+
                             ?>
                             <!-- content ends here////////////////////// -->
                         </div>

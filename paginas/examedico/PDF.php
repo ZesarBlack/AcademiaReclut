@@ -200,7 +200,7 @@ if ($verificado = mysqli_fetch_row($respuesta_verificar)) {
                                                                '$vis', '$esp2', '$dis', '$esp3', '$audi', '$esp4', '$cue',
                                                                '$esp5', '$tor', '$esp6', '$abd', '$esp7', '$ext', '$esp8',
                                                                '$colu', '$esp9', '$obs', '$con', '$med', '$fece', '$id', '$saturacion', 'valoracion actual')";
-                                                               
+
                                                                //echo $sql;
 
                                                                if(mysqli_query($conn, $sql)){

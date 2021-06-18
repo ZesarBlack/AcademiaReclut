@@ -18,7 +18,10 @@ class Login
 		if ($ver=mysqli_fetch_row($resultado))
 				{
 				session_name('academiaIngresos');
-				session_start();
+				session_start(
+					'cookie_lifetime' => 86400,
+					'gc_maxlifetime' => 86400,
+				);
 				$_SESSION['usuario'] = $ver[1];
 				$_SESSION['apellidoP'] = $ver[2];
 				$_SESSION['apellidoM'] = $ver[3];
@@ -63,26 +66,31 @@ class Login
 }
 $usuario = new Login();
 
+
 if (isset($_POST['txtcadete'])) {
 	$usr = $usuario->validarcadete($_POST['txtcadete']);
 	echo $usr;
+	/*
 	if ($usr == 1) {
 		header("Location: ../paginas/inicio/home.php");
 	}else {
 		header("Location: ../index.php");
 	}
+	*/
 
 }
 
 if (isset($_POST['txtusuario']) && isset($_POST['txtpass'])) {
 	$usr = $usuario->validarUsr($_POST['txtusuario'], $_POST['txtpass']);
-	//echo $usr;
+	echo $usr;
 	//echo $_SESSION['rol'];
+
 	if ($_SESSION['rol'] == 0) {
 		 header("Location: ../paginas/examedico/medico.php");
 		 //echo $_SESSION['rol'];
 	}elseif ($usr == 1) {
 		header("Location: ../paginas/inicio/home.php");
+		//echo "al home";
 	}else {
 		header("Location: ../index.php");
 	}

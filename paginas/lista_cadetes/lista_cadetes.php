@@ -6,6 +6,7 @@ require 'lista_cadetes_back.php';
  <html lang="en">
    <?php require '../../requires/head2.php';
    ?>
+   <link rel="stylesheet" href="lista.css">
    <body class="nav-md">
      <div class="container body">
        <div class="main_container">
@@ -79,7 +80,6 @@ require 'lista_cadetes_back.php';
                                    <input type="text"  placeholder="Inserte su busqueda" class="form form-control" name="busqueda" id="busqueda" value="">
                                  </div>
                                </div>
-
                                <div class="row">
                                  <br>
                                  <table class="table table-hover table-condensed table-bordered">
@@ -93,6 +93,7 @@ require 'lista_cadetes_back.php';
                                       <th scope="col">Tipo ingreso</th>
                                       <th scope="col">Género</th>
                                       <th scope="col">Folio</th>
+                                      <th scope="col">Estado del registro</th>
                                     </tr>
                                   </thead>
                                   <tbody id="datos">

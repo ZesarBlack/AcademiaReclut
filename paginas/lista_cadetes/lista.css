@@ -1,0 +1,18 @@
+.circuloVerde{
+     width: 60px;
+     height: 60px;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border-width: 2em;
+     background: #5cb85c;
+}
+.circuloRojo{
+     width: 60px;
+     height: 60px;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border-width: 2em;
+     background: #FF140C;
+}

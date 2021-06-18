@@ -1,17 +1,22 @@
 <?php
+
 session_name('academiaIngresos');
-session_start();
+session_start([
+  'cookie_lifetime' => 86400,
+  'gc_maxlifetime' => 86400,
+]);
 if (isset($_SESSION['usuario'])) {
   echo "";
 }else{
   header("Location: ../../index.php");
   exit();
 }
-//require '../../control/control_permisos_rutas.php';
-include '../../control/control_permisos_rutas.php';
-include '../../control/auditoria.php';
+
+require '../../control/control_permisos_rutas.php';
 $ruta->verificarRutas(getcwd(),$_SESSION['rol']);
-$ruta->verificarRutas($_SESSION['usuario'], ,getcwd());
+
+include '../../control/auditoria.php';
+$seguridad->auditarPagina($_SESSION['usuario'] ,getcwd());
 ?>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

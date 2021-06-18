@@ -3,9 +3,10 @@
 <head>
 <?php require 'requires/titulo.php';
 			require 'requires/head.php';
+		//	session_name('academiaIngresos');
 			session_start();
 			if (isset($_SESSION['usuario'])) {
-			  header("Location: paginas/inicio/home.php");
+			   header("Location: paginas/inicio/home.php");
 			}
 			?>
 <!--===============================================================================================-->

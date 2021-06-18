@@ -7,12 +7,17 @@ class Rutas
   public function verificarRutas($ruta, $rol)
   {
     //se manipula la ruta para obtener la carpeta de la pagina
+    //en linux sería '/'
     $ruta_general = explode('\\', $ruta);
     $pagina_actual = count($ruta_general);
     $ruta_actual = $ruta_general[$pagina_actual-1];
     // se integran la carpeta de la pagina y su rol
+    //echo $ruta;
     //echo $ruta_actual;
     $permisos = array(
+        array(
+            'examen_psicometrico' => 1,
+        ),
         array(
             'inicio' => 1,
         ),

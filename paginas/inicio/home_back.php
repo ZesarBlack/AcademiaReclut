@@ -136,5 +136,74 @@ class Materias
   }
 }
 
+  public function totalRegistros()
+  {
+    require '../../requires/conexion.php';
+    $query_total = "SELECT COUNT(folio) FROM cadete";
+    $respuesta_total=$conn->query($query_total);
+    if ($total=mysqli_fetch_array($respuesta_total)) {
+       echo $total[0];
+    }
+    // code...
+  }
+  public function totalRegistrosM()
+  {
+    require '../../requires/conexion.php';
+    $query_total = "SELECT COUNT(folio) FROM cadete WHERE genero = 'MASCULINO'";
+    $respuesta_total=$conn->query($query_total);
+    if ($total=mysqli_fetch_array($respuesta_total)) {
+       echo $total[0];
+    }
+    // code...
+  }
+  public function totalRegistrosF()
+  {
+    require '../../requires/conexion.php';
+    $query_total = "SELECT COUNT(folio) FROM cadete WHERE genero = 'FEMENINO'";
+    $respuesta_total=$conn->query($query_total);
+    if ($total=mysqli_fetch_array($respuesta_total)) {
+       echo $total[0];
+    }
+    // code...
+  }
+  public function totalRegistrosIn()
+  {
+    require '../../requires/conexion.php';
+    $query_total = "SELECT COUNT(folio) FROM cadete WHERE s_empleo IS NULL OR acta_nacimiento IS NULL OR doc_curp IS NULL OR identificacion_ine IS NULL OR lic_conducir IS NULL OR no_penales IS NULL OR comprobante_estudios IS NULL OR cartilla_smn IS NULL OR no_inhabiltado IS NULL OR baja_voluntaria IS NULL OR
+                 comprobante_domicilio IS NULL OR referencias_personales IS NULL OR curriculum IS NULL OR documento_rfc IS NULL OR documento_seguro_sosial IS NULL";
+    $respuesta_total=$conn->query($query_total);
+    if ($total=mysqli_fetch_array($respuesta_total)) {
+       echo $total[0];
+    }
+    // code...
+  }
+  public function totalRegistrosC3()
+  {
+    require '../../requires/conexion.php';
+    //numero de los que cumplen con la condicio,
+    $numero_res = "SELECT DISTINCT COUNT(*) FROM exa_medico AS em
+    INNER JOIN examen_fisico AS ef ON ef.cadete_idCadete = em.cadete_id
+    INNER JOIN cadete AS cad ON em.cadete_id = cad.folio
+    WHERE ef.resultado = 'APTO' AND em.conclusion = 'APTO' AND cad.tipo_ingreso LIKE '%Nuevo Ingreso%' AND em.obser ='valoracion actual'";
+    $num_query = $conn->query($numero_res);
+
+    if ($num = mysqli_fetch_array($num_query)) {
+      echo $num[0];
+    }
+    // code...
+  }
+  public function totalAprobadosC3()
+  {
+    require '../../requires/conexion.php';
+    //numero de los que cumplen con la condicio,
+    $numero_res = "SELECT COUNT(folio) FROM control_conf WHERE result_eva ='APROBADO' ";
+    $num_query = $conn->query($numero_res);
+    if ($num = mysqli_fetch_array($num_query)) {
+      echo $num[0];
+    }
+    // code...
+  }
 }
+
+$materia = new Materias();
  ?>

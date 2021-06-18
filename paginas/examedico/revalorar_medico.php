@@ -2,13 +2,6 @@
 <html lang="en">
   <?php require '../../requires/head2.php';
   include 'medico_back.php';
-  $examen = $nuevo->obtenerEmedico($_POST["idCad"]);
-  if ( $examen =="El aspirante no tiene examen previo") {
-    echo '<script type="text/javascript">
-    alert("sin regitros");
-    window.location.href = "busqueda_medico.php";
-    </script>';
-  }
 
   ?>
   <body class="nav-md">
@@ -52,13 +45,6 @@
                             <div class="x_content ">
                                 <!-- content starts here ////////////////////-->
                                 <form name="form1" method="POST" action="PDF.php">
-
-                                  <div class="row tile_count">
-                                      <div class="col-md-2 form-group has-feedback">
-                                            <input type="text" id="id" name="id" value="<?php echo $examen[117]; ?>" hidden>
-                                            <input type="text" id="id_exa" name="id_exa" value="<?php echo $examen[0] ?>"  hidden>
-                                      </div>
-                                    </div>
                                     <br>
                                         <div class="row tile_count">
                                           <div class="col-md-4 col-sm-4 form-group has-feedback">
@@ -75,11 +61,26 @@
                                             Datos Generales
                                           </h3>
                                           <br>
-
+                                          <?php
+                                          $examen = $nuevo->obtenerEmedico($_POST["idCad"]);
+                                          if ( $examen =="El aspirante no tiene examen previo") {
+                                            echo '<script type="text/javascript">
+                                            alert("sin regitros");
+                                            window.location.href = "busqueda_medico.php";
+                                            </script>';
+                                          }
+                                           ?>
+                                           <div class="row tile_count">
+                                               <div class="col-md-2 form-group has-feedback">
+                                                     <input type="text" id="id" name="id" value="<?php echo $examen[117]; ?>" hidden>
+                                                     <input type="text" id="id_exa" name="id_exa" value="<?php echo $examen[0] ?>"  hidden>
+                                               </div>
+                                           </div>
+ <!--//////////////////////////////////////////////datos presonales
                                         <div class="row tile_count">
                                           <div class="col-md-4 form-group has-feedback">
                                             <input type="text"  maxlength="30"  class="form-control has-feedback-left"
-                                                  id="aspirante" placeholder="Nombre(s)"  value="<?php echo $examen[3]; ?>" name="aspirante" style='font-size: 10pt;
+                                                  id="aspirante" placeholder="Nombre(s)"  value="<?php// echo $examen[3]; ?>" name="aspirante" style='font-size: 10pt;
                                                   font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
                                                   Nombre(s)
                                                   <div class="help-info"></div>
@@ -89,106 +90,118 @@
 
                                          <div class="col-md-4 form-group has-feedback">
                                             <input type="text"  maxlength="20" class="form-control has-feedback-left"
-                                                  id="paterno" placeholder="Apellido Paterno" value="<?php echo $examen[4]; ?>" name="paterno" style='font-size: 10pt;
+                                                  id="paterno" placeholder="Apellido Paterno" value="<?php// echo $examen[4]; ?>" name="paterno" style='font-size: 10pt;
                                                   font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
                                                   Apellido Paterno
                                                   <div class="help-info"></div>
                                                   <span class="fa fa-user form-control-feedback left" aria-hidden="true">
                                                   </span>
                                          </div>
-
-                                      <div class="col-md-4 form-group has-feedback">
-                                            <input type="text"  maxlength="20"  class="form-control has-feedback-left"
-                                                  id="materno" placeholder="Apellido Materno" value="<?php echo $examen[5]; ?>" name="materno" style='font-size: 10pt;
-                                                  font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
-                                                  Apellido Materno
-                                                  <div class="help-info"></div>
-                                                  <span class="fa fa-user form-control-feedback left" aria-hidden="true">
-                                                  </span>
-                                      </div>
-                                    </div>
-
-
-                                      <div class="row tile_count">
-                                         <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                                <input type="text" maxlength="20"  class="form-control has-feedback-left"
-                                                      id="sexo" placeholder="Sexo" name="sexo" value="<?php echo $examen[6]; ?>" style='font-size: 12pt;
+                                          <div class="col-md-4 form-group has-feedback">
+                                                <input type="text"  maxlength="20"  class="form-control has-feedback-left"
+                                                      id="materno" placeholder="Apellido Materno" value="<?php// echo $examen[5]; ?>" name="materno" style='font-size: 10pt;
                                                       font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
-                                                      Sexo
+                                                      Apellido Materno
                                                       <div class="help-info"></div>
-                                                      <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
-                                                      </span>
-                                          </div>
-
-                                          <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                                <input type="text"  maxlength="20" class="form-control has-feedback-left"
-                                                      id="edad" placeholder="Edad" name="edad" value="<?php echo $examen[7]; ?>" style='font-size: 12pt;
-                                                      font-weight: bold; color: red; text-align: center;' >
-                                                      Edad
-                                                      <div class="help-info"></div>
-                                                      <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
-                                                      </span>
-                                          </div>
-
-                                          <div class="col-md-4 col-sm-4 form-group has-feedback">
-                                                  <input type="date"  maxlength="45"  class="form-control has-feedback-left"
-                                                      id="fechaNac" placeholder="Fecha de nacimiento " value="<?php echo $examen[8]; ?>" name="fechaNac" style='font-size: 12pt;
-                                                      font-weight: bold; color: red; text-align: center;' >
-                                                      Fecha de nacimiento
-                                                  <div class="help-info"></div>
-                                                      <span class="fa fa-calendar form-control-feedback left" aria-hidden="true">
+                                                      <span class="fa fa-user form-control-feedback left" aria-hidden="true">
                                                       </span>
                                           </div>
                                         </div>
+                                        <div class="row tile_count">
+                                           <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                                                  <input type="text" maxlength="20"  class="form-control has-feedback-left"
+                                                        id="sexo" placeholder="Sexo" name="sexo" value="<?php// echo $examen[6]; ?>" style='font-size: 12pt;
+                                                        font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
+                                                        Sexo
+                                                        <div class="help-info"></div>
+                                                        <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                        </span>
+                                            </div>
 
+                                            <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                                                  <input type="text"  maxlength="20" class="form-control has-feedback-left"
+                                                        id="edad" placeholder="Edad" name="edad" value="<?php// echo $examen[7]; ?>" style='font-size: 12pt;
+                                                        font-weight: bold; color: red; text-align: center;' >
+                                                        Edad
+                                                        <div class="help-info"></div>
+                                                        <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                        </span>
+                                            </div>
 
-                                    <div class="row tile_count">
-                                          <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                                <input type="text"  maxlength="45" class="form-control has-feedback-left"
-                                                      id="escolaridad" placeholder="Escolaridad" value="<?php echo $examen[10]; ?>"  name="escolaridad" style='font-size: 12pt;
-                                                      font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
-                                                      Escolaridad
-                                                      <div class="help-info"></div>
-                                                      <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
-                                                      </span>
+                                            <div class="col-md-4 col-sm-4 form-group has-feedback">
+                                                    <input type="date"  maxlength="45"  class="form-control has-feedback-left"
+                                                        id="fechaNac" placeholder="Fecha de nacimiento " value="<?php// echo $examen[8]; ?>" name="fechaNac" style='font-size: 12pt;
+                                                        font-weight: bold; color: red; text-align: center;' >
+                                                        Fecha de nacimiento
+                                                    <div class="help-info"></div>
+                                                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true">
+                                                        </span>
+                                            </div>
                                           </div>
-                                          <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
-                                                <input type="text"  maxlength="45" class="form-control has-feedback-left"
-                                                      id="estadoc" placeholder="Estado Civíl" value="<?php echo $examen[12]; ?>" name="estadoc" style='font-size: 12pt;
-                                                      font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
-                                                      Estado Civíl
-                                                      <div class="help-info"></div>
-                                                      <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
-                                                      </span>
+                                        <div class="row tile_count">
+                                              <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                                                    <input type="text"  maxlength="45" class="form-control has-feedback-left"
+                                                          id="escolaridad" placeholder="Escolaridad" value="<?php// echo $examen[10]; ?>"  name="escolaridad" style='font-size: 12pt;
+                                                          font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
+                                                          Escolaridad
+                                                          <div class="help-info"></div>
+                                                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                          </span>
+                                              </div>
+                                              <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                                                    <input type="text"  maxlength="45" class="form-control has-feedback-left"
+                                                          id="estadoc" placeholder="Estado Civíl" value="<?php// echo $examen[12]; ?>" name="estadoc" style='font-size: 12pt;
+                                                          font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
+                                                          Estado Civíl
+                                                          <div class="help-info"></div>
+                                                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                          </span>
+                                              </div>
                                           </div>
-                                      </div>
-
-
-                                      <div class="row tile_count">
                                           <div class="col-md-6 col-sm-6 col-xs-4 form-group has-feedback">
                                                 <input type="text"  maxlength="60"  class="form-control has-feedback-left"
-                                                      id="domicilio" placeholder="Domicilio Particular" value="<?php echo $examen[15]; ?>" name="domicilio" style='font-size: 12pt;
+                                                      id="domicilio" placeholder="Domicilio Particular" value="<?php// echo $examen[15]; ?>" name="domicilio" style='font-size: 12pt;
                                                       font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
                                                       Domicilio Particular
                                                       <div class="help-info"></div>
                                                       <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
                                                       </span>
                                           </div>
-
                                           <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
                                                 <input type="text"  maxlength="10"  class="form-control has-feedback-left"
-                                                      id="numerotel" placeholder="Número de teléfono" value="<?php echo $examen[16]; ?>" name="numerotel" style='font-size: 12pt;
+                                                      id="numerotel" placeholder="Número de teléfono" value="<?php// echo $examen[16]; ?>" name="numerotel" style='font-size: 12pt;
                                                       font-weight: bold; color: red; text-align: center;' >
                                                       Número de teléfono
                                                       <div class="help-info"></div>
                                                       <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
                                                       </span>
                                           </div>
-                                        </div>
+                                          <div class="row tile_count">
+                                              <div class="col-md-6 col-sm-6 col-xs-4 form-group has-feedback">
+                                                    <input type="text"  maxlength="60"  class="form-control has-feedback-left"
+                                                          id="domicilio" placeholder="Domicilio Particular" value="<?php// echo $examen[15]; ?>" name="domicilio" style='font-size: 12pt;
+                                                          font-weight: bold; color: red; text-align: center;' onkeyup="mayus(this);">
+                                                          Domicilio Particular
+                                                          <div class="help-info"></div>
+                                                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                          </span>
+                                              </div>
+                                              <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
+                                                    <input type="text"  maxlength="10"  class="form-control has-feedback-left"
+                                                          id="numerotel" placeholder="Número de teléfono" value="<?php// echo $examen[16]; ?>" name="numerotel" style='font-size: 12pt;
+                                                          font-weight: bold; color: red; text-align: center;' >
+                                                          Número de teléfono
+                                                          <div class="help-info"></div>
+                                                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
+                                                          </span>
+                                              </div>
+                                            </div>
+                                          //////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////datos presonales/-->
+
+
                                         <br>
-
                                           <h3>Antecedentes personales no patológicos</h3> <br>
-
                                       <div class="row tile_count">
                                           <div class="col-md-4 col-sm-4 col-xs-4 form-group has-feedback">
                                                 <input type="text"   maxlength="45" class="form-control has-feedback-left"

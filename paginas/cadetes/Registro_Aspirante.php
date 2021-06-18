@@ -186,13 +186,13 @@
                                 </div>
                                 <div class="col-md-1 col-sm-2 col-xs-2 form-group has-feedback">
                                   <label for="Nacimiento">M</label>
-                                  <input type="radio" name="genero" id="naciona" value="MASCULINO" required>
+                                  <input type="radio" name="genero" id="genero" value="MASCULINO" onfocus="mujerCartillamilitar(this)" required>
                                   <div class="">
                                   </div>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2 form-group has-feedback">
                                   <label for="Naturalizado">F</label>
-                                  <input type="radio" name="genero" id="naciona" value="FEMENINO" >
+                                  <input type="radio" name="genero" id="genero" value="FEMENINO" onfocus="mujerCartillamilitar(this)">
                                   <div class="">
                                   </div>
                                 </div>
@@ -362,6 +362,11 @@
                                          <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
                                          </span>
                                     </div>
+                                    <div class="col-md-4 form-group has-feedback" >
+                                        <input id="identificacion" class=" has-feedback-left" onkeyup="mayus(this);" placeholder="Identificación del elemento"
+                                               name="identificacion" value="" style='font-size: 12pt;
+                                               font-weight: bold; color: red; text-align: center; width: 100%;' hidden>
+                                   </div>
                                  </div>
                                  <div class="row">
                                    <div class="col-md-6 form-group has-feedback">
@@ -369,7 +374,6 @@
                                      <input type="text" class=" has-feedback-left"
                                           id="entidad_act" placeholder="Entidad" value="" name="entidad_act" style='font-size: 12pt;
                                           font-weight: bold; color: red; text-align: center; width: 100%;' onkeyup="mayus(this);"  maxlength="60" hidden>
-
                                    </div>
                                    <div class="col-md-6 form-group has-feedback">
                                      <input type="text" class=" has-feedback-left"
@@ -729,15 +733,15 @@
                                      </div>
                                      <div class="col-md-1 col-sm-2 col-xs-2 form-group has-feedback">
                                         <label for="Naturalizado">No</label>
-                                        <input type="radio" name="cartilla" id="" value="No" >
+                                        <input type="radio" name="cartilla" id="cartillaM" value="No" >
                                         <div class="">
                                         </div>
                                      </div>
 
                                      <div class="col-md-5 form-group has-feedback">
                                       <input type="text" class="form-control has-feedback-left"
-                                            id="" placeholder="Observaciones" value="" onkeyup="sanitizar(this)" name="cartilla_observacion" maxlength="45" style='font-size: 12pt;
-                                            font-weight: bold; color: red; text-align: center; ' >
+                                            id="cartilla_observacion" placeholder="Observaciones" value="" onkeyup="sanitizar(this)" name="cartilla_observacion" maxlength="45" style='font-size: 12pt;
+                                            font-weight: bold; color: red; text-align: center; '>
                                             <div class="help-info"></div>
                                             <span class="fa fa-align-justify form-control-feedback left" aria-hidden="true">
                                             </span>

@@ -42,16 +42,19 @@
                 <div class="row" >
                     <div class="col-md-12">
                         <div class="x_panel tile"  style="border: 2px solid #CABFFF;">
-                            <div class="x_content" style="overflow : auto;">
+                          <div class="row">
+                            <form class="" action="reporte.php" method="post">
+                              <button type="submit" class="btn btn-primary" name="button"> descargar reporte</button>
+                            </form>
+                          </div>
+                          <div class="row">
+                            <div class="x_content" style="overflow: auto; overflow: scroll;  height: 55em;">
                                 <!-- content starts here ////////////////////-->
-                                <form class="" action="reporte.php" method="post">
-                                  <button type="submit" class="btn btn-primary" name="button"> descargar reporte</button>
-                                </form>
-                                <table class="table table-bordered">
+                                <table class="table table-striped jambo_table table-bordered">
                                   <thead>
-                                    <th colspan="3"><h4>Datos Generales del aspirante<h4></th>
-                                    <th colspan="2"><h4>resistencia</h4></th>
-                                    <th colspan="2"><h4>Flexiones</h4></th>
+                                    <th  colspan="3"><h4>Datos Generales del aspirante<h4></th>
+                                    <th  colspan="2"><h4>resistencia</h4></th>
+                                    <th  colspan="2"><h4>Flexiones</h4></th>
                                     <th  colspan="2"><h4>Abdominales</h4></th>
                                     <th  colspan="2"><h4>Lagartijas</h4></th>
                                     <th  colspan="2"><h4>Sentadillas</h4></th>
@@ -84,9 +87,9 @@
                                     <?php $examen->obtenerLista(); ?>
                                   </tbody>
                                 </table>
-
                                 <!-- content ends here////////////////////// -->
                             </div>
+                          </div>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,8 @@ var busqueda="";
 var id_temp="";
 var tipo_r="";
 
+
+
 $(document).ready(function(){
 	busqueda_cadetes(tipo, "Genero");
   $("#tipo").change(function(event){
@@ -71,8 +73,6 @@ $.ajax({
 })
 
 }
-
-
 
 $(document).ready(function(){
 	tipo_r = $('#tbusqueda').val();

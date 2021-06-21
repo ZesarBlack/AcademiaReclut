@@ -97,9 +97,9 @@ class Examenfisico
           $celda_inicial=$celda_inicial+1;
           $objPHPExcel->setActiveSheetIndex(0)
 
-                      ->setCellValue('A'.$celda_inicial, $aptos[21])
-                      ->setCellValue('B'.$celda_inicial, $aptos[22])
-                      ->setCellValue('C'.$celda_inicial, $aptos[25].' '.$aptos[23].' '.$aptos[24])
+                      ->setCellValue('A'.$celda_inicial, $aptos[23])
+                      ->setCellValue('B'.$celda_inicial, $aptos[24])
+                      ->setCellValue('C'.$celda_inicial, $aptos[25].' '.$aptos[26].' '.$aptos[27])
                       ->setCellValue('D'.$celda_inicial, $aptos[1])
                       ->setCellValue('E'.$celda_inicial, $aptos[2])
                       ->setCellValue('F'.$celda_inicial, $aptos[3])

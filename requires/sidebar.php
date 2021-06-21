@@ -20,7 +20,7 @@
             <li><a href="../../paginas/cadetes/Registro_Aspirante.php">Recepción de Documentos</a></li>
             <li><a href="../../paginas/examedico/medico.php">Examen Médico</a></li>
             <li><a href="../../paginas/examen_psicometrico/examen_psicometrico.php">Examen Psicométrico</a></li>
-            <li><a href="../../paginas/exafisico/evaluacion.php">Examen físicio</a></li>
+            <li><a href="../../paginas/exafisico/evaluacion.php">Examen Físicio</a></li>
             <li><a href="../../paginas/lista_exa_fisico/lista_fisico.php">Lista de Evaluados Examen Físicio</a></li>
             <li><a href="../../paginas/examedico/busqueda_medico.php">Revaloracíon</a></li>
             <li><a href="../../paginas/lista_cadetes/lista_cadetes.php">Administrar Aspirantes</a></li>
@@ -55,7 +55,7 @@
         echo '
         <li><a><i class="fa fa-users"></i>Reclutamiento<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="../../paginas/examedico/medico.php">Examen médico</a></li>
+            <li><a href="../../paginas/examedico/medico.php">Examen Médico</a></li>
             <li><a href="../../paginas/examedico/busqueda_medico.php">Revaloracíon</a></li>
             <li><a href="../../paginas/lista_cadetes/lista_cadetes.php">Administrar Aspirantes</a></li>
           </ul>
@@ -67,8 +67,9 @@
         <li><a><i class="fa fa-users"></i>Reclutamiento<span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="../../paginas/cadetes/Registro_Aspirante.php">Recepción de Documentos</a></li>
-            <li><a href="../../paginas/exafisico/evaluacion.php">Examen físicio</a></li>
-            <li><a href="../../paginas/lista_exa_fisico/lista_fisico.php">Lista de evaluados examen físicio</a></li>
+            <li><a href="../../paginas/examen_psicometrico/examen_psicometrico.php">Examen Psicométrico</a></li>
+            <li><a href="../../paginas/exafisico/evaluacion.php">Examen Físicio</a></li>
+            <li><a href="../../paginas/lista_exa_fisico/lista_fisico.php">Lista de Evaluados Examen físicio</a></li>
             <li><a href="../../paginas/lista_cadetes/lista_cadetes.php">Administrar Aspirantes</a></li>
             <li><a href="../../paginas/control_reingresos/control_reingreso.php">Antecedentes de Reingresos</a></li>
           </ul>

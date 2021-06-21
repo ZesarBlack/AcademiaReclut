@@ -9,8 +9,10 @@
       include '../../requires/conexion.php';
       //$idUsuario=$_GET['idUsuario'];
       $consulta=mysqli_query($conn,"DELETE FROM usuarios_cat WHERE idUsuario='$idUsuario'");
+      $conn->query($consulta);
       header('location: adminusuarios.php');
     }
+
     public function crear_usr($nombre, $paterto, $materno, $usuario, $contraeña, $mail, $fecha, $registro)
     {
       //echo $nombre;

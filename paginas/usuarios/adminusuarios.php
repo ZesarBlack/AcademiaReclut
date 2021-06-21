@@ -33,7 +33,7 @@
                         <div class="animated flipInY ">
                           <div class="tile-stats" style="border: 2px solid #000000;">
                             <h3>
-                                Usuarios registrados
+                                Usuarios Registrados
                             </h3>
                           </div>
                         </div>
@@ -47,19 +47,32 @@
                             <div class="x_content ">
                                 <!-- content starts here ////////////////////-->
                                 <div class="row">
-                                  <table class="table table-hover table-condensed table-bordered">
-                                    <tr>
-                                      <td>ID</td>
-                                      <td>Nombre</td>
-                                      <td>Apellido Paterno</td>
-                                      <td>Apellido Materno</td>
-                                      <td>Rol</td>
-                                      <td>Correo Electronico</td>
-                                      <td>Creación</td>
-                                      <td>Actualización</td>
-                                      <td>Editar </td>
-                                      <td>Eliminar</td>
-                                    </tr>
+                                  <form name="form2" method="POST" action="agregarU.php">
+                                            <div class="row tile_count">
+                                               <div class="col-xs-10 tile_stats_count">
+                                                         <div>
+                                                           <input type="submit" class="btn btn-primary"  name="guardar" id="guardar" value="Agregar Usuario" style='font-size: 12pt;
+                                                            font-weight: bold;'>
+                                                         </div>
+                                                 </div>
+                                             </div>
+                                   </form>
+                                </div>
+
+                                <div class=" row x_content"  style="overflow : auto; overflow: scroll;">
+                                  <table class="table table-striped jambo_table table-bordered">
+                                    <thead>
+                                      <th>ID</th>
+                                      <th>Nombre</th>
+                                      <th>Apellido Paterno</th>
+                                      <th>Apellido Materno</th>
+                                      <th>Rol</th>
+                                      <th>Correo Electronico</th>
+                                      <th>Creación</th>
+                                      <th>Actualización</th>
+                                      <th>Editar </th>
+                                      <th>Eliminar</th>
+                                    </thead>
                                     <?php
                                     $consulta= "SELECT * FROM usuarios_cat WHERE nombre != 'Administrador'";
                                     $resultado= mysqli_query($conn, $consulta);
@@ -91,19 +104,8 @@
 
                                     }
                                     mysqli_close($conn);
-
-                                       ?>
-                                               <form name="form2" method="POST" action="agregarU.php">
-                                                         <div class="row tile_count">
-                                                            <div class="col-xs-10 tile_stats_count">
-                                                                      <div style="text-align:right;">
-                                                                        <input type="submit"  name="guardar" id="guardar" value="Agregar Usuario" style='font-size: 12pt;
-                                                                         font-weight: bold; color: black; text-align: center;'>
-                                                                      </div>
-                                                              </div>
-                                                          </div>
-                                                </form>
-                                              <br>
+                                    ?>
+                                  </table>
                                 <!-- content ends here////////////////////// -->
                             </div>
                         </div>

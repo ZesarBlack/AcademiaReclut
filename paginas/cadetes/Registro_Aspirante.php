@@ -381,8 +381,15 @@
                                           font-weight: bold; color: red; text-align: center; width: 100%;' onkeyup="mayus(this);"  maxlength="60" hidden>
                                    </div>
                                  </div>
+                                 <div class="row">
+                                   <div class="col-md-4 form-group has-feedback">
+                                     <input type="text" class=" has-feedback-left"
+                                          id="motiv_baja" placeholder="Motivo de baja" value="" name="motiv_baja" style='font-size: 12pt;
+                                          font-weight: bold; color: red; text-align: center; width: 100%;' onkeyup="mayus(this);"  maxlength="60" hidden>
+                                   </div>
+                                 </div>
                                 <div class="row tile_count">
-                                  <div class="col-md-4 form-group has-feedback">
+                                <div class="col-md-4 form-group has-feedback">
 
                                        <select class="form-control has-feedback-left" name="medioInfo" id="" style='font-size: 12pt;
                                             font-weight: bold; color: red; text-align: center;'  required>

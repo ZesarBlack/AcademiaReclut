@@ -94,33 +94,54 @@ function especificar(tipoM){
   switch (tipoM) {
     case "POLICIA MUNICIPAL":
       $("#identificacion").show();
+      $("#motiv_baja").show();
+      $("#motiv_baja").removeAttr( "hidden" );
       $("#municipio_act").show();
       $("#municipio_act").removeAttr( "hidden" );
       $("#entidad_act").show();
       $("#entidad_act").removeAttr( "hidden" );
       break;
     case "POLICIA ESTATAL":
+    $("#motiv_baja").show();
+    $("#motiv_baja").removeAttr( "hidden" );
       $("#identificacion").show();
       $("#entidad_act").show();
       $("#entidad_act").removeAttr( "hidden" );
       $("#municipio_act").hide();
       break;
     case "POLICIA AUXILIAR":
+    $("#motiv_baja").show();
+    $("#motiv_baja").removeAttr( "hidden" );
       $("#identificacion").show();
       $("#entidad_act").hide();
       $("#municipio_act").hide();
       break;
     case "POLICIA FEDERAL":
+      $("#motiv_baja").show();
+      $("#motiv_baja").removeAttr( "hidden" );
       $("#identificacion").show();
       $("#entidad_act").hide();
       $("#municipio_act").hide();
       break;
     case "MILITAR":
-      $("#identificacion").show();
-      $("#entidad_act").hide();
-      $("#municipio_act").hide();
+        $("#motiv_baja").show();
+        $("#motiv_baja").removeAttr( "hidden" );
+        $("#identificacion").show();
+        $("#entidad_act").hide();
+        $("#municipio_act").hide();
       break;
+      case "SEGURIDAD PRIVADA":
+        $("#motiv_baja").show();
+        $("#motiv_baja").removeAttr( "hidden" );
+        $("#identificacion").show();
+        break;
+      case "GUARDIA NACIONAL":
+        $("#motiv_baja").show();
+        $("#motiv_baja").removeAttr( "hidden" );
+        $("#identificacion").show();
+          break;
     default:
+      $("#motiv_baja").hide();
       $("#entidad_act").hide();
       $("#municipio_act").hide();
       $("#identificacion").hide();

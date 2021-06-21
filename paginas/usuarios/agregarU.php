@@ -126,16 +126,17 @@
                                          <div class="">
                                          </div>
                                      </div>
-
+                                  <!--
                                      <div class="col-md-2 col-sm-2 col-xs-2 form-group has-feedback">
                                          <label for="Academia">Administrador de cursos</label>
-                                         <input type="radio" name="registro" id="registro" value="4"> <?php /*if($regi == "No") echo "checked"; */?>
+                                         <input type="radio" name="registro" id="registro" value="4">
                                          <div class="">
                                          </div>
                                      </div>
+                                   -->
                                      <div class="col-md-2 col-sm-2 col-xs-2 form-group has-feedback">
                                          <label for="Academia">Reclutador</label>
-                                         <input type="radio" name="registro" id="registro" value="8"> <?php /*if($regi == "No") echo "checked"; */?>
+                                         <input type="radio" name="registro" id="registro" value="8">
                                          <div class="">
                                          </div>
                                      </div>
@@ -145,18 +146,21 @@
                                          <div class="">
                                          </div>
                                      </div>
+                                     <!--
                                      <div class="col-md-2 col-sm-2 col-xs-2 form-group has-feedback">
                                          <label for="Academia">Instructor de física</label>
                                          <input type="radio" name="registro" id="registro" value="6"> <?php /*if($regi == "No") echo "checked"; */?>
                                          <div class="">
                                          </div>
                                      </div>
+                                   -->
                                      <div class="col-md-2 col-sm-2 col-xs-2 form-group has-feedback">
                                          <label for="Academia">Control examen de confianza</label>
                                          <input type="radio" name="registro" id="registro" value="9"> <?php /*if($regi == "No") echo "checked"; */?>
                                          <div class="">
                                          </div>
                                      </div>
+
                                   </div>
 
 

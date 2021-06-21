@@ -18,10 +18,10 @@ class Login
 		if ($ver=mysqli_fetch_row($resultado))
 				{
 				session_name('academiaIngresos');
-				session_start(
+				session_start([
 					'cookie_lifetime' => 86400,
 					'gc_maxlifetime' => 86400,
-				);
+				]);
 				$_SESSION['usuario'] = $ver[1];
 				$_SESSION['apellidoP'] = $ver[2];
 				$_SESSION['apellidoM'] = $ver[3];

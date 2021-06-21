@@ -13,41 +13,59 @@ class ListCadete
     //$nombre_cadete = $conn->real_escape_string($nom);
     //$id_cadete = $conn->real_escape_string($id);
     if ($id != "") {
-          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, f_nacimiento, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE idCadete LIKE '$id'";
+          $query_cadetes = "SELECT nombre, a_paterno, a_materno, curp, edad_registro, tipo_ingreso, genero, idCadete, folio, validacion FROM cadete WHERE idCadete LIKE '$id'";
     }
     //echo $query_cadetes;
     $resultado = $conn->query($query_cadetes);
 
-    if($cadetes=mysqli_fetch_array($resultado)) {
-    echo  '<tr>
-            <td><h2>'.$cadetes[0].'</h2></td>
-            <td><h2>'.$cadetes[1].'</h2></td>
-            <td><h2>'.$cadetes[2].'</h2></td>
-            <td><h2>'.$cadetes[3].'</h2></td>
-            <td><h2>'.$cadetes[4].'</h2></td>
-            <td><h2>'.$cadetes[5].'</h2></td>
-            <td><h2>'.$cadetes[6].'</h2></td>
-            <td><h2>'.$cadetes[8].'</h2></td>
-             <td>
-               <form action="../detalle_cadete/detalles.php" method="post">
-                 <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
-                 <button type="submit" name="button">Ver detalles</button>
-               </form>
-             </td>
-             <td>
-               <form action="../editar_elemento/editar_elemento.php" method="post">
-                 <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
-                 <button type="submit" name="button">Editar</button>
-               </form>
-             </td>
-             <td>
-               <form action="pdf.php" method="post">
-                 <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
-                 <button type="submit" name="button">Expedir pdf</button>
-               </form>
-             </td>
-          </tr>';
-        }
+    while ($cadetes=mysqli_fetch_array($resultado)) {
+      $query_docs="SELECT s_empleo, acta_nacimiento, doc_curp, identificacion_ine, lic_conducir, no_penales, comprobante_estudios, cartilla_smn, no_inhabiltado, baja_voluntaria,
+                   comprobante_domicilio, referencias_personales, curriculum, documento_rfc, documento_seguro_sosial FROM cadete WHERE folio = '$cadetes[8]'";
+        //echo $query_docs;
+      $respuesta_docs = $conn->query($query_docs);
+      $docs=mysqli_fetch_array($respuesta_docs);
+      //var_dump($docs[0]);
+      //echo $docs[0];
+
+      if ($docs[0] == "Si" AND $docs[1] == "Si" AND $docs[2] == "Si" AND $docs[3] == "Si" AND $docs[4] == "Si" AND $docs[5] == "Si" AND $docs[6] == "Si" AND $docs[7] == "Si" AND $docs[8] == "Si" AND
+          $docs[9] == "Si" AND $docs[10] == "Si" AND $docs[1] == "Si" AND $docs[12] == "Si" AND $docs[13] == "Si" AND $docs[14] == "Si") {
+          $circulo="circuloVerde";
+      }else {
+          $circulo="circuloRojo";
+
+      }
+      //$circulo="circuloVerde";
+            echo
+                  '<tr>
+                    <td><h2>'.$cadetes[0].'</h2></td>
+                    <td><h2>'.$cadetes[1].'</h2></td>
+                    <td><h2>'.$cadetes[2].'</h2></td>
+                    <td><h2>'.$cadetes[3].'</h2></td>
+                    <td><h2>'.$cadetes[4].'</h2></td>
+                    <td><h2>'.$cadetes[5].'</h2></td>
+                    <td><h2>'.$cadetes[6].'</h2></td>
+                    <td><h2>'.$cadetes[8].'</h2></td>
+                    <td><h2><div class="'.$circulo.'"></div></h2></td>
+                     <td>
+                       <form action="../detalle_cadete/detalles.php" method="post">
+                         <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
+                         <button type="submit" name="button">Ver detalles</button>
+                       </form>
+                     </td>
+                     <td>
+                       <form action="../editar_elemento/editar_elemento.php" method="post">
+                         <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
+                         <button type="submit" name="button">Editar</button>
+                       </form>
+                     </td>
+                     <td>
+                       <form action="pdf.php" method="post">
+                         <input type="text" id="id" name="id" value="'.$cadetes[7].'"readonly hidden>
+                         <button type="submit" name="button">Expedir pdf</button>
+                       </form>
+                     </td>
+                  </tr>';
+    }
         $conn->close();
   }
 
@@ -98,11 +116,11 @@ class ListCadete
       while ($cadetes=mysqli_fetch_array($resultado)) {
         $query_docs="SELECT s_empleo, acta_nacimiento, doc_curp, identificacion_ine, lic_conducir, no_penales, comprobante_estudios, cartilla_smn, no_inhabiltado, baja_voluntaria,
                      comprobante_domicilio, referencias_personales, curriculum, documento_rfc, documento_seguro_sosial FROM cadete WHERE folio = '$cadetes[8]'";
-          echo $query_docs;
+          //echo $query_docs;
         $respuesta_docs = $conn->query($query_docs);
         $docs=mysqli_fetch_array($respuesta_docs);
         var_dump($docs[0]);
-        echo $docs[0];
+        //echo $docs[0];
 
         if ($docs[0] == "Si" AND $docs[1] == "Si" AND $docs[2] == "Si" AND $docs[3] == "Si" AND $docs[4] == "Si" AND $docs[5] == "Si" AND $docs[6] == "Si" AND $docs[7] == "Si" AND $docs[8] == "Si" AND
             $docs[9] == "Si" AND $docs[10] == "Si" AND $docs[1] == "Si" AND $docs[12] == "Si" AND $docs[13] == "Si" AND $docs[14] == "Si") {

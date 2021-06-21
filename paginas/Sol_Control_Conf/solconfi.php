@@ -116,7 +116,7 @@
                                       </div>
 
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  name="button">Actualizar Control de Confianza</button>
-                                        <table class="table ttable-hover table-condensed table-bordered">
+                                        <table class="table table-hover table-condensed table-bordered">
                                           <thead>
                                             <th>CUIP</th>
                                             <th>Nombre completo</th>

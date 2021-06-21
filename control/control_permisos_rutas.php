@@ -148,6 +148,9 @@ class Rutas
         array(
             'llamados_formacion_interesados' =>  0,
         ),
+        array(
+            'editar_elemento' =>  1,
+        ),
 
 
         array(
